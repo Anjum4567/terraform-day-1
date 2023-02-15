@@ -1,3 +1,5 @@
+#Create First Resource on AWS using Terraform (Create EC2 Instance On AWS)
+
 provider "aws" {
   region     = "ap-south-1"
   access_key = ""
