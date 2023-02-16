@@ -21,3 +21,7 @@ output helloworlduppercase {
 output helloworldlowercase {
     value =${lower(var.users[2]}"
 }
+
+output helloworldtitle{
+    value = "${title(var.users[0])}"
+}
