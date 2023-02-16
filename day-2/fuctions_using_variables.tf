@@ -25,3 +25,15 @@ output helloworldlowercase {
 output helloworldtitle{
     value = "${title(var.users[0])}"
 }
+
+
+
+
+
+
+0/p:
+Changes to Outputs:
+  + helloworldlower = "ankit"
+  + helloworldtitle = "Gaurav"
+  + helloworldupper = "SAURAV"
+  + printfirst      = "first user is gaurav----->saurav----->Ankit"
