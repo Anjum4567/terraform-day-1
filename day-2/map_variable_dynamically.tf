@@ -20,26 +20,7 @@ output  "userage"{
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+#using cmd: terraform plan -var username=saurav
 
 
 
