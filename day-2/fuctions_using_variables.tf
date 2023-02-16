@@ -1,4 +1,4 @@
-#functions
+#string functions
 
 
 variable users {
