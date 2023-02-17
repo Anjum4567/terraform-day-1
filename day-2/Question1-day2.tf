@@ -1,4 +1,16 @@
 #1. Create a tf file that will fetch any existing resource data(like sg,vpc,ami etc) and use it  to create instance
+
+provider "aws" {
+  region     = "ap-south-1"
+  access_key = var.access_key
+  secret_key = var.secret_key
+}
+
+
+
+
+
+
 data "aws_ami" "example" {
   owners           = ["801119661308"]
 
