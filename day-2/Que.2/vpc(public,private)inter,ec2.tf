@@ -69,3 +69,22 @@ resource "aws_instance" "public_instance" {
     Name = "public_instance"
   }
 }
+
+
+
+#creating s3 bucket
+variable "bucket_name" {
+  description = "name of the bucket"
+ type= string
+  default= "s3-bucket-is-name"
+}
+resource "aws_s3_bucket" "s3_bucket" {
+  bucket = var.bucket_name #name of the bucket 
+   acl    = "private"
+
+  tags = {
+    Name = "My bucket"
+    
+  }
+}
+
