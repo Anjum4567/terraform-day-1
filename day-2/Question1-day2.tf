@@ -28,6 +28,6 @@ resource "aws_instance" "web" {
   instance_type = "t2.micro"
 
   tags = {
-    Name = "HelloWorld"
+    Name = "HelloWorld"  #name of the ec2 machine  
   }
 }
