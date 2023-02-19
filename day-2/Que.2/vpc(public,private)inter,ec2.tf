@@ -59,7 +59,7 @@ resource "aws_route_table_association" "associate" {
   route_table_id = aws_route_table.myroute-table.id
 }
 
-#creating Ec2 instance in public subnets
+/*creating Ec2 instance in public subnets
 resource "aws_instance" "public_instance" {
 
   ami           = "ami-0f8ca728008ff5af4"
@@ -68,11 +68,11 @@ resource "aws_instance" "public_instance" {
   tags = {
     Name = "public_instance"
   }
-}
+}*/
 
 
 
-#creating s3 bucket
+/*#creating s3 bucket
 variable "bucket_name" {
   description = "name of the bucket"
  type= string
@@ -87,4 +87,4 @@ resource "aws_s3_bucket" "s3_bucket" {
     
   }
 }
-
+*/
