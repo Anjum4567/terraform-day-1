@@ -29,6 +29,7 @@ resource "aws_instance" "ec2_example" {
   }
 
 }
+#output of the ec2 instance
 output "fetched_info_from_aws" {
   value = data.aws_instance.myawsinstance.id
 }
@@ -48,4 +49,9 @@ resource "aws_s3_bucket" "s3_bucket" {
     
   }
 }
+# Output of instance ip
+output "instance_ip" {
+  value = data.aws_instance.myawsinstance.public_ip
+}
+
 
