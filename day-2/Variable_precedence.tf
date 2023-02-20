@@ -59,6 +59,9 @@ o/pChanges to Outputs:
   + my_variable_output = "grape"
 
 
+#pass Environment variable through CMD 
+export TF_VAR_username=anjum mulla
+
 #Search/Priority Order
 #A variable value can be defined in multiple ways, but there is a priority associated with them. It's worth combining the above examples and trying them out for yourself. The search or priority order is as follows.
 
