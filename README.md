@@ -225,7 +225,137 @@ The resource block has two strings before the block: the resource type and the r
 	
 	
 	
-#
+#CLI Commands 
+1)init
+Initialization
+
+The first command to run for a new configuration — or after checking out an existing configuration from version control — is terraform init. Subsequent commands will use local settings and data that are initialized by terraform init.
+
+Terraform uses a plugin-based architecture to support hundreds of infrastructure and service providers. The terraform init command downloads and installs providers used within the configuration, which in this case is the aws provider.
+
+
+2)terraform validate
+
+The terraform validate command validates the configuration files in a directory.Validate runs checks that verify whether a configuration is syntactically valid and thus primarily useful for general verification of reusable modules, including the correctness of attribute names and value types.
+	
+3)apply
+
+terraform apply
+
+The terraform apply command is used to apply the changes required to reach the desired state of the configuration. Terraform apply will also write data to the terraform.tfstate file.
+Once the application is completed, resources are immediately available.
+
+    terraform apply’ : Executes changes to the actual environment
+    terraform apply –auto-approve : Apply changes without being prompted to enter ”yes”
+    terraform apply -refresh=true : Update the state for each resource prior to planning and applying
+    terraform apply -input=false : Ask for input for variables if not directly set
+    terraform apply -var ‘foo=bar’ : Set a variable in the Terraform configuration, can be used multiple times
+    terraform apply -var-file=foo : Specify a file that contains key/value pairs for variable values
+    terraform apply -target : Only apply/deploy changes to the targeted resource
+	
+4)Destroy
+The terraform destroy command is used to destroy the terraform-managed infrastructure. Terraform destroy command is not the only command through which infrastructure can be destroyed.You can remove the resource block from the configuration and run terraform apply this way you
+can destroy the infrastructure.
+
+    terraform destroy –auto-approve : Destroy/cleanup without being prompted to enter ”yes”
+    terraform destroy -target : Only destroy the targeted resource and its dependencies
+	
+	
+5)terraform Fmt
+The terraform fmt command is used to rewrite Terraform configuration files to a canonical format and style. 
+
+
+6)terraform output
+The terraform output command is used to extract the value of an output variable from the state file.
+	
+	
+7)terraform plan
+
+The terraform plan command is used to create an execution plan.
+It will not modify things in infrastructure.Terraform performs a refresh, unless explicitly disabled, and then determines what actions are
+necessary to achieve the desired state specified in the configuration files.
+This command is a convenient way to check whether the execution plan for a set of changes matches your expectations without making any changes to real resources or to the state.
+
+    terraform plan Creates an execution plan (dry run)
+    terraform plan -out=path save generated plan output as a file
+    terraform plan -destroy Outputs a destroy plan
+	
+	
+8)terraform refresh
+The terraform refresh command reads the current settings from all managed remote objects and updates the Terraform state to match. This does not modify infrastructure but does modify the state file.
+
+	
+9)terraform show
+
+The terraform show command is used to provide human-readable output from a state or plan file.This can be used to inspect a plan to ensure that the planned operations are expected, or to inspect the current state as Terraform sees it.
+	
+	
+10)terraform taint
+The terraform taint command informs Terraform that a particular object has become degraded or damaged. Terraform represents this by marking the object as “tainted” in the Terraform state, and Terraform will propose to replace it in the next plan you create.
+	
+	
+11)terraform syntax
+Syntax
+
+Let’s learn how to write Terraform code. Terraform consists of only a few basic elements.
+  
+  <BLOCK TYPE> “<BLOCK LABEL>” “<BLOCK LABEL>” {
+# Block body
+<IDENTIFIER> = <EXPRESSION> # Argument
+}
+
+There are several Block types like “resource”, “variable”, “output” and so on. You can use them according to your need. Block labels vary by cloud platforms. The other Block Label is used to name the resource. It can be defined by the user. Identifiers may vary by resource. The user can assign values to the identifiers. You can go through the following example.
+resource "azurerm_resource_group" "main" 
+{  
+  name     = "test-resource-group" 
+  location = "centralus"  
+  tags = {    
+    environment = "dev"    
+    source = "terraform"  
+  }
+  
+}
+
+This is an example for configure a resource group for Azure.
+ RUN
+  Now you can test your terraform code. First, we have to initialize our working directory containing Terraform configuration files. For that we can use the terraform init Command. After a few seconds you can see the “.terraform.lock.hcl” file with a success message.
+ Then you can hit the terraform plan Command to determine the desired state of all the resources it declares. If there are any errors you can see them in the terminal with line numbers. Else you can see how many resources that you added in the terminal.
+ After all these configurations now you can deploy your first cloud resource in your favorite cloud platform using the terraform apply Command.
+
+
+
+12)terraform state command
+ These two commands comes under Terraform Inspecting State
+  terraform state list: This command is used to list resources within a Terraform state.
+  terraform state show: This command is used to show the attributes of a single resource in the Terraform state.
+
+	
+13)terraform graph
+The terraform graph command is used to generate a visual representation of either a configuration or execution plan. The output is in the DOT format, which can be used by GraphViz to generate charts.
 
 	
 	
+14)what is data sources?
+Data Source
+1.data sources can be used to feed the  Terraform configuration with the set of data from outside the Terraform or from other Terraform Configuration files. 
+2.These data source block can be defined as “data” and followed by braces “{ ... }“.
+# Data source
+
+data "aws_ami" "server_ami" {
+  most_recent = true
+  filter {
+    name   = "name"
+    values = ["server-*"]
+  }
+}
+
+#resorce that is using data source.
+
+resource "aws_instance" "server" {
+  ami           = "${data.aws_ami.server_ami.id}"
+  instance_type = "t2.nano"
+}
+3.which will get AWS AMI from the repository or somewhere where the AMIs are listed and prefixed with “server-“. Then the same data source can be used by the resource mentioned in the snippet as “data.aws_ami.server_ami.id“.
+
+	
+14)
