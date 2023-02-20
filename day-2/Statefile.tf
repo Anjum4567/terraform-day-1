@@ -15,4 +15,20 @@ This article contains the overview of terraform state file and how to configure 
   
   
  Purpose of Terraform State?
+ 1.Every time you run Terraform, it records information about what infrastructure it created in a Terraform state file. This file is in JSON format & have mapping from terraform resources.
+2.Here I have created a simple terraform file which will create an EC2 instance.
+3.Let’s run terraform init & terraform apply & check our directory. So after running terraform apply, we can see one more file in our directory i.e terraform.tfstate
+4.When we open that file, we see a long JSON format containing data. Now we go a little back & I had asked how terraform knows that which resource it needs to create/update?
+5.So Using this JSON format, Terraform knows that a resource with type aws_instance and name “test” corresponds to an EC2 Instance Every time you run Terraform,
+6.it can fetch the latest status of this EC2 Instance from AWS and compare that to what’s in your Terraform configurations to determine what changes need to be applied
+7.NOte:When running a terraform plan, Terraform must know the current state of resources in order to effectively determine the changes that it needs to make to reach your desired configuration.
+8.Terraform stores state locally in a file named terraform.tfstate. When working with Terraform in a team, use of a local file makes Terraform usage complicated because each user must make sure they always have the latest state data before running Terraform and make sure that nobody else runs Terraform at the same time.
+With remote state, Terraform writes the state data to a remote data store, which can then be shared between all members of a team. Terraform supports storing state in Terraform Enterprise, HashiCorp Consul, Amazon S3, and more.
+
   
+ 
+ 
+ How to maintain “.tfstate” file ?
+ Using S3 Backend:
+ 1.Maintain the “.tfstate” file on S3 by using the Backend option.
+
