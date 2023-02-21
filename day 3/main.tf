@@ -84,5 +84,11 @@ resource "aws_security_group" "main" {
 }
   resource "aws_key_pair" "deployer" {
     key_name = "aws_key"
-    public_key = "AQDWDqOipGic9r+1hxMEbxxIogkmrKDfops6qOXpKUsb1V5j807T
+    public_key = "AQDWDqOipGic9r+1hxMEbxxIogkmrKDfops6qOXpKUsb1V5j807T"
     }
+
+provisioner "local-exec" {
+    #command = "touch hello-local-exec-provisioner.txt"
+    # Output of instance ip
+    command = "echo ${aws_instance.ec2_example.private_ip} >> private_ips.txt"
+  }
